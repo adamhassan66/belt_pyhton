@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <h1>Welcome,{{logged_user.first_name}} </h1>
+      <a href="/paintings/new">Create</a>
+      <a href="/users/logout">Log Out</a>
+    </div>
+    <h3>Paintings</h3>
+  </div>
+  <table class="table table-dark table-striped">
+    <tr>
+      <th>Title</th>
+      <th>posted by</th>
+      <th>Actions</th>
+    </tr>
+    {% for one_painting in all_paintings %}
+    <tr>
+        <td>{{one_painting.title}}</td>
+        <td>{{one_painting.planner.first_name}} {{one_painting.planner.last_name}}</td>
+        <td>
+          <a href="/paintings/{{one_painting.id}}">View Painting</a>
+          {%if one_painting.user_id == session['user_id']%}
+            <a href="/paintings/{{one_painting.id}}/edit">Edit</a>
+            <a href="/paintings/{{one_painting.id}}/delete">Delete</a>
+          {%endif%}
+        </td>
+    </tr>
+    {% endfor %}
+  </table>  
+</body>
+</html>

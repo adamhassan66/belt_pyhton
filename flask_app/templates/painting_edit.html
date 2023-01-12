@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Edit Painting!</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <h1>Edit painting!</h1>
+      <a href="/dashboard">Back to Paintings</a>
+      <a href="/logout">Log Out</a>
+    </div>
+    {% for message in get_flashed_messages() %}
+    <p class="text-danger">{{ message }}</p>
+    {% endfor %}
+    <form action="/paintings/{{one_painting.id}}/update" method="post">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" value="{{one_painting.title}}">
+
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" value="{{one_painting.description}}">
+
+      <label for="instructions">Instructions</label>
+      <input type="text" name="instructions" id="instructions" value="{{one_painting.instructions}}">
+
+      <label for="price">Price</label>
+      <input type="text" name="price" id="price" value="{{one_painting.price}}">
+
+      <button>Submit</button>
+
+    </form>
+</body>
+</html>
